@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>QuizApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      $("input[type=radio]").click(function() {
+        var previousValue = $(this).data('storedValue');
+        if (previousValue) {
+          $(this).prop('checked', !previousValue);
+          $(this).data('storedValue', !previousValue);
+        } else {
+          $(this).data('storedValue', true);
+          $("input[type=radio]:not(:checked)").data("storedValue", false);
+        }
+      });
+    });
+  </script>
+  <script>
+
+    function onSubmit(){
+        var score=0;
+
+        //loop through the first question
+        for(var q = 1; q <=3; q++) {
+            var question = document.getElementById(q);
+            for(var i=0;i<4;i++){
+              //console.log(document.forms['quiz']);
+              var op = document.getElementById(q + "_qcb" + (i+1));
+              
+                //var op = document.forms['quiz'][(i+1)];
+                if(op.checked){
+                    if(op.value == 'b') {
+                      //add correct class
+                      document.getElementById(q+"_l"+(i+1)).classList.add("rightAnswer");
+                        score += 1;
+                    }
+                    else {
+                      document.getElementById(q+"_l"+(1+i)).classList.add("wrongAnswer");
+                    }
+                } else {
+                  if(op.value == 'b') {
+                      //add correct class
+                      document.getElementById(q+"_l"+(i+1)).classList.add("wouldBeRightAnswer");
+                    }
+                }
+                op.disabled = true;
+            }
+        }
+        document.getElementById("results").style.display = "block";
+        document.getElementById("results").innerHTML = "Score: "+score+"/3";
+    }
+
+    function closeResult() {
+      document.getElementById("Result").style.display = "none";
+      document.getElementById("quizForm").style.display = "block";
+    }
+
+</script>
+</body>
+</html>
