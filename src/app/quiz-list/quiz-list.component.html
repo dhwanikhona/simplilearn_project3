@@ -1,0 +1,25 @@
+<div class="body">
+
+               
+       <form name="quiz" id="quizForm" action="" onsubmit="onSubmit()">
+       <div id="results"></div>
+        <div *ngFor="let quiz of quiz">
+           <ul>
+                <input type="text" disabled id="{{quiz.id}}" value="{{quiz.id}} {{quiz.question}}">
+            
+                <div>
+                    <ol class="options">
+                        <li><input type="radio" name="{{quiz.id}}" value='a' id="{{quiz.id}}_qcb1"> <label id="{{quiz.id}}_l1" for="{{quiz.id}}_qcb1">{{quiz.option1}}</label></li>
+                        <li><input type="radio" name="{{quiz.id}}" value='b' id="{{quiz.id}}_qcb2"> <label id="{{quiz.id}}_l2"  for="{{quiz.id}}_qcb2">{{quiz.option2}}</label></li>
+                        <li><input type="radio" name="{{quiz.id}}" value='c' id="{{quiz.id}}_qcb3"><label id="{{quiz.id}}_l3" for="{{quiz.id}}_qcb3">{{quiz.option3}}</label></li>
+                        <li><input type="radio" name="{{quiz.id}}" value='d' id="{{quiz.id}}_qcb4"><label id="{{quiz.id}}_l4" for="{{quiz.id}}_qcb4">{{quiz.option4}}</label></li>
+                    </ol>
+                </div>
+            </ul>
+        </div>
+    <input type="submit" id="submit" value="Submit" />
+    <br>
+    </form>
+</div>
+
+
